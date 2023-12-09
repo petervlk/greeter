@@ -1,14 +1,6 @@
 {:paths ["src" "resources"]
- :deps {org.clojure/clojure {:mvn/version "1.11.1"}}
+ :deps  {org.clojure/clojure {:mvn/version "1.11.1"}}
  :aliases
- {:run-m {:main-opts ["-m" "greeter.greeter"]}
-  :run-x {:ns-default greeter.greeter
-          :exec-fn greet
-          :exec-args {:name "Clojure"}}
-  :build {:deps {io.github.clojure/tools.build
-                 {:git/tag "v0.9.2" :git/sha "fe6b140"}}
-          :ns-default build}
-  :test {:extra-paths ["test"]
-         :extra-deps {org.clojure/test.check {:mvn/version "1.1.1"}
-                      io.github.cognitect-labs/test-runner
-                      {:git/tag "v0.5.1" :git/sha "dfb30dd"}}} :neil {:project {:name greeter/greeter}}}}
+ {:test
+  {:extra-deps {lambdaisland/kaocha {:mvn/version "1.87.1366"}}
+   :main-opts  ["-m" "kaocha.runner"]}}}
