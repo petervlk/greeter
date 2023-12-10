@@ -17,6 +17,7 @@ Visit URL http://localhost:9010/
 
 ## TODO
 
-- [ ] add integrant/repl to improve repl wowrkflow
+- [x] add integrant/repl to improve repl wowrkflow
+- [ ] modify config values for development purposes
 - [ ] move integrant config from `greeter.core` ns to config.edn file
 - [ ] user https://github.com/juxt/aero to read config.edn including env vars

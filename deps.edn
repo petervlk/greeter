@@ -5,6 +5,9 @@
  :aliases
  {:run
   {:main-opts ["-m" "greeter.core"]}
+  :dev
+  {:extra-paths ["dev"]
+   :extra-deps  {integrant/repl {:mvn/version "0.3.3"}}}
   :test
   {:extra-deps {lambdaisland/kaocha {:mvn/version "1.87.1366"}}
    :main-opts  ["-m" "kaocha.runner"]}}}

@@ -29,11 +29,3 @@
 (defn -main
   [& _args]
   (ig/init config))
-
-(comment
-
-  (def system (ig/init config))
-
-  (ig/halt! system)
-
-  *e)
