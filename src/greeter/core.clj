@@ -1,39 +1,39 @@
 (ns greeter.core
-  (:require [ring.adapter.jetty :refer [run-jetty]])
+  (:require [ring.adapter.jetty :refer [run-jetty]]
+            [integrant.core :as ig])
   (:gen-class))
 
+(def config
+  {:greeter/server  {:port 9010 :handler (ig/ref :greeter/handler)}
+   :greeter/handler {:greetee "Jack"}})
+
 (defn greet
-  [name]
-  (format "Hello, %s!" (or name "World")) )
+  [greetee]
+  (format "Hello, %s!" (or greetee "World")) )
 
 (defn handler
-  [_req]
+  [greetee _req]
   {:status 200
-   :body   (greet "Jack")})
+   :body   (greet greetee)})
 
-(defonce server (atom nil))
+(defmethod ig/init-key :greeter/handler [_ {:keys [greetee]}]
+  (partial #'handler greetee))
 
-(defn server-start
-  []
-  (when-not @server
-    (reset! server (run-jetty #'handler {:port 9010 :join? false}))))
+(defmethod ig/init-key :greeter/server [_ {:keys [port handler]}]
+  (run-jetty handler {:port port :join? false}))
 
-(defn server-stop
-  []
-  (when @server
-    (.stop @server)
-    (reset! server nil)))
-
-(defn server-restart
-  []
-  (server-stop)
-  (server-start))
-
-(comment
-  (server-restart)
-
-  *e)
+(defmethod ig/halt-key! :greeter/server [_ jetty]
+  (when jetty
+    (.stop jetty)))
 
 (defn -main
   [& _args]
-  (server-start))
+  (ig/init config))
+
+(comment
+
+  (def system (ig/init config))
+
+  (ig/halt! system)
+
+  *e)

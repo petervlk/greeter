@@ -14,3 +14,9 @@ Run the project directly, via `:main-opts` (`-m greeter.core`):
     $ clojure -M:run-m
 
 Visit URL http://localhost:9010/
+
+## TODO
+
+- [ ] add integrant/repl to improve repl wowrkflow
+- [ ] move integrant config from `greeter.core` ns to config.edn file
+- [ ] user https://github.com/juxt/aero to read config.edn including env vars
