@@ -11,7 +11,7 @@ Download from https://github.com/petervlk/greeter
 
 Run the project directly, via `:main-opts` (`-m greeter.core`):
 
-    $ clojure -M:run-m
+    $ clojure -M:run
 
 Visit URL http://localhost:9010/
 
