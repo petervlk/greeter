@@ -1,6 +1,9 @@
 {:paths ["src" "resources"]
- :deps  {org.clojure/clojure {:mvn/version "1.11.1"}}
+ :deps  {org.clojure/clojure     {:mvn/version "1.11.1"}
+         ring/ring-jetty-adapter {:mvn/version "1.10.0"}}
  :aliases
- {:test
+ {:run
+  {:main-opts ["-m" "greeter.core"]}
+  :test
   {:extra-deps {lambdaisland/kaocha {:mvn/version "1.87.1366"}}
    :main-opts  ["-m" "kaocha.runner"]}}}
