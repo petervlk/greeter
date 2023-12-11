@@ -5,7 +5,9 @@
    [greeter.core :refer [config]]))
 
 (ig-repl/set-prep!
-  (fn [] (ig/prep config)))
+  (fn []
+    (ig/load-namespaces config)
+    (ig/prep config)))
 
 (defmethod ig/prep-key :greeter/handler [_ handler-config]
   (assoc handler-config :greetee "dev Dave"))

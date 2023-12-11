@@ -1,0 +1,2 @@
+{:greeter/server  {:port 9010 :handler #ig/ref :greeter/handler}
+ :greeter/handler {:greetee "Jack"}}
