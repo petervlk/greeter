@@ -2,15 +2,16 @@
   (:require
    [integrant.core :as ig]
    [integrant.repl :as ig-repl]
-   [greeter.core :refer [config]]))
+   [greeter.core :refer [load-config! load-namespaces]]))
 
 (ig-repl/set-prep!
   (fn []
-    (ig/load-namespaces config)
-    (ig/prep config)))
+    (-> (load-config!)
+        load-namespaces
+        ig/prep)))
 
 (defmethod ig/prep-key :greeter/handler [_ handler-config]
-  (assoc handler-config :greetee "dev Dave"))
+  (update handler-config :greetee #(str "dev " %)))
 
 (comment
   (ig-repl/go)

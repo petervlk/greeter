@@ -1,2 +1,2 @@
 {:greeter/server  {:port 9010 :handler #ig/ref :greeter/handler}
- :greeter/handler {:greetee "Jack"}}
+ :greeter/handler {:greetee #or [#env "GREETER_GREETEE_NAME" "Peter"]}}
